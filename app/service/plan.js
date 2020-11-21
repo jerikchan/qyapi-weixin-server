@@ -21,7 +21,8 @@ module.exports = class QyapiService extends Service {
   save(json) {
     Reflect.deleteProperty(json, 'online');
 
-    if (json.id) {
+    const found = this.colllection.getByWhere({ id: json.id }).value();
+    if (found) {
       return this.colllection.update({ id: json.id }, json);
     }
     json.id = this.ctx.db.getUniqueId();
