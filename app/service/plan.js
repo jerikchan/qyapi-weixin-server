@@ -16,24 +16,23 @@ module.exports = class QyapiService extends Service {
     return list;
   }
   get(id) {
-    return this.colllection.getByWhere({ id });
+    return this.colllection.getByWhere({ id }).value();
   }
   save(json) {
     Reflect.deleteProperty(json, 'online');
-    
-    const found = this.colllection.getByWhere({ id: json.id }).value();
+
+    const found = this.get(json.id);
     if (found) {
-      this.colllection.update({ id: json.id }, json);
+      return this.colllection.update({ id: json.id }, json);
     } else {
-      this.colllection.add(json);
+      return this.colllection.add(json);
     }
-    return json;
   }
   saveList(list) {
-    list = list.map(json => {
+    const jsons = list.map(json => {
       return this.save(json);
-    });
-    return list;
+    }).filter(Boolean);
+    return jsons;
   }
   delete(id) {
     return this.colllection.delete({ id });

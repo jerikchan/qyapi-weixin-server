@@ -13,9 +13,7 @@ module.exports = class FileDB extends Base {
   }
   create() {
     this.instance.defaults({
-      article: [],
-      user: {},
-      qyapi: []
+      plan: []
     }).write();
   }
   get(collectionName) {
