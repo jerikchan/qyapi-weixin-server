@@ -1,0 +1,17 @@
+{
+  "article": [],
+  "user": {},
+  "plan": [
+    {
+      "time": "2020-11-16T10:14:42.827Z",
+      "message": "下班啦",
+      "useRepeat": true,
+      "repeat": 1,
+      "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=02f515cc-120d-4abe-b481-0524b4e2488f",
+      "id": "djvfkGO5R",
+      "open": false,
+      "online": true
+    }
+  ],
+  "qyapi": []
+}
