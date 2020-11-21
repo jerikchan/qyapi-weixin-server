@@ -18,7 +18,6 @@ module.exports = class QyapiController extends Controller {
     // schedule
     list.forEach(task => {
       ctx.service.schedule.execute(task);
-
       const online = ctx.service.schedule.checkOnline(task);
       Reflect.set(task, 'online', online);
     });

@@ -20,19 +20,20 @@ module.exports = class QyapiService extends Service {
   }
   save(json) {
     Reflect.deleteProperty(json, 'online');
-
+    
     const found = this.colllection.getByWhere({ id: json.id }).value();
     if (found) {
-      return this.colllection.update({ id: json.id }, json);
+      this.colllection.update({ id: json.id }, json);
+    } else {
+      this.colllection.add(json);
     }
-    json.id = this.ctx.db.getUniqueId();
-    return this.colllection.add(json);
+    return json;
   }
   saveList(list) {
-    const jsons = list.map(json => {
+    list = list.map(json => {
       return this.save(json);
     });
-    return jsons;
+    return list;
   }
   delete(id) {
     return this.colllection.delete({ id });
